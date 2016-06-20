@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SummerReadingLog</title>
+  <title>Summer Reading Log</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="summer-reading-app">
+  <div class="container">
+    <h1>#layouts/application</h1>
+    <div class="container" ng-view>
+      inside application
+      {{book}}
+    </div>
 
-<%= yield %>
+  </div>
+
 
 </body>
 </html>
