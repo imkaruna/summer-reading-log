@@ -1,7 +1,10 @@
-<h1>Reading Logs</h1>
-<ul ng-repeat = "log in logs">
-  <span class="reader">{{log.name}}</span>
-  <ul ng-repeat = "book in log.books_read">
-    <li>{{book}}</li>
+<h2>Reading Logs</h2>
+<div ng-controller = "LogsController">
+  <ul ng-repeat = "log in logs">
+    <span class="reader">{{log.name}} - Total Minutes: (total)</span>
+    <ul ng-repeat = "book in log.books_read">
+      <li>{{book.name}} - {{book.minutes}} minutes</li>
+    </ul>
   </ul>
-</ul>
+
+</div>
