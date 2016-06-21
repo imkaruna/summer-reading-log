@@ -4,9 +4,17 @@
   <input type="text" ng-model="newReader.name" value="">
   <input type="submit" name="submit" value="Add Reader">
   </form>
-{{newReader.name}}
-<ul ng-repeat = "reader in readers">
-  <li>{{reader.name}}</li>
-</ul>
-
+  <div class="row">
+    <div class="col-md-4">
+      <ul ng-repeat = "reader in readers">
+        <li>
+          <a  ui-sref="readers.profile({ id: reader.id })"><span> {{reader.name}}</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div ui-view>
+      </div>
+    </div>
+  </div>
 </div>
