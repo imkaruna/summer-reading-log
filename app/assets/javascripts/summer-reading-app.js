@@ -1,6 +1,6 @@
 angular
-  .module('summer-reading-app', ['templates','ui.router'])
-  .config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+  .module('summer-reading-app', ['templates','ui.router', 'ngResource'])
+  .config(function ($stateProvider, $locationProvider, $urlRouterProvider ) {
     $stateProvider
         .state('/', {
             url: '/',
@@ -16,8 +16,13 @@ angular
             templateUrl: 'readers/readers_index.html',
             controller: 'ReadersController'
         })
+        .state('readers.profile', {
+            url: '/:id/profile',
+            templateUrl: 'readers/profile.html',
+            controller: 'ReadersController'
+        })
         .state('logs', {
-            url: '/logs',
+            url: 'readers/logs',
             templateUrl: 'logs/logs_index.html',
             controller: 'LogsController'
         });
