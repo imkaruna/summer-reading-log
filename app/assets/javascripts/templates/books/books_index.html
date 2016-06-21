@@ -1,0 +1,16 @@
+  <div ng-controller = "BooksController">
+    <h3>Add New Book</h3>
+    <form ng-submit="addBook()">
+      <p>
+        Book Name: <input type="text" ng-model="newBook.name" value="">
+      </p>
+      <p>
+        Author Name: <input type="text" ng-model="newBook.author" value="">
+      </p>
+      <input type="submit" name="submit" value="Add Book">
+    </form>
+    <h3>{{title}}</h3>
+    <ul ng-repeat ="book in books">
+      <li>{{book.name}}  - {{book.author}}</li>
+    </ul>
+  </div>

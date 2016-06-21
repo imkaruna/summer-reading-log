@@ -1,0 +1,12 @@
+<h1>All Readers</h1>
+<div ng-controller="ReadersController">
+  <form ng-submit = "addReader()">
+  <input type="text" ng-model="newReader.name" value="">
+  <input type="submit" name="submit" value="Add Reader">
+  </form>
+{{newReader.name}}
+<ul ng-repeat = "reader in readers">
+  <li>{{reader.name}}</li>
+</ul>
+
+</div>
