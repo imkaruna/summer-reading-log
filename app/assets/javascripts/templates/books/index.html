@@ -1,7 +1,14 @@
 <div class="container">
-  #from angular template
+   <base href="/">
   <h1>{{title}}</h1>
+    <ul id="menu" ng-controller = "ChildrenController">
+      <li><a href="/add_child">Add Child</a></li>
+      <li><a href="#">Add Books</a></li>
+      <li><a href="#">Reading Log</a></li>
+    </ul>
+
   <ul ng-repeat = "book in books">
     <li>{{book}}</li>
   </ul>
+
 </div>

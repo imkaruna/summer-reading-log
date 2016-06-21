@@ -6,4 +6,9 @@ angular
             templateUrl: 'books/index.html',
             controller: 'BooksController'
         })
+        .when('/add_child', {
+            templateUrl: 'children/new.html',
+            controller: 'ChildrenController'
+        })
+
 });

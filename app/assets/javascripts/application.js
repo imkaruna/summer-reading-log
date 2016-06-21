@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-route
 //= require angular-rails-templates
 //= require_tree ./templates
-//= require angular-route
 //= require angular-resource
 //= require summer-reading-app
 //= require_tree .
