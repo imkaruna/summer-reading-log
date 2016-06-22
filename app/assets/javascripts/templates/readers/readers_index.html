@@ -11,7 +11,12 @@
       <label>Search:</label> <input ng-model="ctrl.search" />
       <ul ng-repeat = "reader in ctrl.readers | filter: ctrl.search">
         <li>
-          <a  ui-sref="readers.profile({ id: reader.id })"><span> {{reader.name}}</span></a>
+          <a  ng-hide = "edit" ui-sref="readers.profile({ id: reader.id })"><span> {{reader.name}}</span></a>
+          <button ng-hide="edit" name="button" ng-click = "edit=true">Edit</button>
+          <form ng-show = "edit" ng-submit = "ctrl.updateReader(reader)">
+            <input type="text" ng-model="reader.name" value="">
+            <input type="submit" name="submit" value="Update Reader" ng-click="edit=false">
+          </form>
         </li>
       </ul>
     </div>

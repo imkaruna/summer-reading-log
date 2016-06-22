@@ -11,8 +11,8 @@ function ReadersController($resource, $http, $stateParams, $filter) {
   };
 
   ctrl.updateReader = function (reader) {
-    ctrl.refresh();
     Reader.update(reader);
+      ctrl.refresh();
   };
 
   ctrl.deleteReader = function (reader) {
