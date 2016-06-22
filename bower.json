@@ -3,6 +3,7 @@
     "name": "bower-rails generated vendor assets",
     "dependencies": {
       "angular": "latest",
+      "angular-route": "latest",
       "angular-ui-router": "latest",
       "angular-resource": "latest"
     }
