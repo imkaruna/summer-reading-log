@@ -9,7 +9,7 @@ class ReadersController < ApplicationController
   def show
     @reader = Reader.find(params[:id])
     respond_to do |format|
-      format.json {render :json => @reader.to_json(:only => [:name], :include => [{:books => {:only => [:name, :author, :minutes]}}])}
+      format.json {render :json => @reader.to_json(:only => [:name], :include => [{:books => {:only => [:name, :author, :genre]}}])}
     end
   end
 

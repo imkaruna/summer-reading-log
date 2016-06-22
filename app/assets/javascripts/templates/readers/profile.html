@@ -1,3 +1,33 @@
-<h3>Edit Reader Profile</h3>
-<strong>Name: </strong>
-{{reader.data.name}}
+
+  <h3>Edit Reader Profile</h3>
+  <strong>Name: </strong>
+  {{reader.data.name}}
+  <div>
+  <h4>Books Read</h4>
+    <label>Filter by Genre </label> <input ng-model = "reader.search" ng-change="reader.refilter()">
+    <br><br>
+    <table class="bookTable">
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Author
+        </th>
+        <th>
+          Genre
+        </th>
+      </tr>
+      <tr ng-repeat = "book in reader.data.books  | filter:reader.search:filteredList">
+        <td>
+          {{book.name}}
+        </td>
+        <td>
+          {{book.author}}
+        </td>
+        <td>
+          {{book.genre}}
+        </td>
+      </tr>
+    </table>
+  </div>
