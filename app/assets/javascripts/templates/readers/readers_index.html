@@ -1,11 +1,12 @@
 <h1>All Readers</h1>
 <div ng-controller="ReadersController as ctrl">
   <p>
-    <form ng-submit = "ctrl.addReader()">
-      <input type="text" ng-model="ctrl.newReader.name" value="">
-      <input type="submit" name="submit" value="Add Reader">
+    <form name="readerForm" ng-submit = "ctrl.addReader()">
+      <input type="text" ng-model="ctrl.newReader.name" name="uName" ng-minlength="3" required>
+      <input type="submit" name="submit" value="Add Reader" ng-disabled="readerForm.$invalid">
     </form>
   </p>
+  <p ng-show="readerForm.uName.$error.minlength" class="help-block">Username is too short.</p>
   <div class="row">
     <div class="col-md-4">
       <label>Search:</label> <input ng-model="ctrl.search" />
