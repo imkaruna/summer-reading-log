@@ -1,10 +1,8 @@
 function ReadersController($resource, $http, $stateParams, $filter) {
   console.log('reader');
   var ctrl = this;
-  ctrl.search = '';
   Reader = $resource("/readers/:id", {id: "@id"}, {update: {method: "PUT"}});
   ctrl.readers = Reader.query();
-  ctrl.filteredList = $filter('filter')(ctrl.readers, ctrl.search);
   ctrl.addReader = function () {
     console.log(ctrl.newReader);
     reader = Reader.save(ctrl.newReader);
