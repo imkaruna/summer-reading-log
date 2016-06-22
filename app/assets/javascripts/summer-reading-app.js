@@ -11,6 +11,17 @@ angular
             templateUrl: 'books/books_index.html',
             controller: 'BooksController'
         })
+        .state('books.detail', {
+            url: '/:id',
+            templateUrl: 'books/book_details.html',
+            controller: 'BookDetailsController',
+            controllerAs: 'detail',
+            resolve: {
+              detail: function (BookService, $stateParams) {
+                return BookService.getDetail($stateParams.id);
+              }
+        }
+        })
         .state('readers', {
             url: '/readers',
             templateUrl: 'readers/readers_index.html',

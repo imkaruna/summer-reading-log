@@ -1,24 +1,22 @@
-function BooksController($scope) {
+function BooksController($scope, $resource, $http) {
+  var ctrl = this;
   console.log('books');
-  $scope.books = [
-    {
-      name: 'Book1',
-      author: 'John Smith'
-    },
-    {
-      name: 'Book2',
-      author: 'Adam Sandy'
-    },
-    {
-      name: 'Book3',
-      author: 'Ben Stilo'
-    }
-  ];
+  Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
+  $scope.books = Book.query();
   $scope.title = "All Books";
   $scope.addBook = function () {
-    $scope.books.push($scope.newBook);
+    reader = Book.save($scope.newBook);
+    console.log($scope.newBook);
+    ctrl.newBook = '';
+    $scope.refresh();
     $scope.newBook = '';
   }
+  $scope.refresh = function(){
+    $http.get('/books')
+          .success(function(data){
+               ctrl.books = data;
+          });
+  };
 
 }
 
