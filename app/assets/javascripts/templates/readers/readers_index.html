@@ -1,12 +1,15 @@
 <h1>All Readers</h1>
-<div ng-controller="ReadersController">
-  <form ng-submit = "addReader()">
-  <input type="text" ng-model="newReader.name" value="">
-  <input type="submit" name="submit" value="Add Reader">
-  </form>
+<div ng-controller="ReadersController as ctrl">
+  <p>
+    <form ng-submit = "addReader()">
+    <input type="text" ng-model="ctrl.newReader.name" value="">
+    <input type="submit" name="submit" value="Add Reader">
+    </form>
+  </p>
   <div class="row">
     <div class="col-md-4">
-      <ul ng-repeat = "reader in readers">
+      <label>Search:</label> <input ng-model="ctrl.search" />
+      <ul ng-repeat = "reader in ctrl.readers | filter: ctrl.search">
         <li>
           <a  ui-sref="readers.profile({ id: reader.id })"><span> {{reader.name}}</span></a>
         </li>

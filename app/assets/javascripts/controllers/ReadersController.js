@@ -1,32 +1,36 @@
-function ReadersController($scope, $resource, $http, $stateParams) {
+function ReadersController($resource, $http, $stateParams, $filter) {
   console.log('reader');
+  var ctrl = this;
+  ctrl.search = '';
   Reader = $resource("/readers/:id", {id: "@id"}, {update: {method: "PUT"}});
-  $scope.readers = Reader.query();
-  $scope.addReader = function () {
-    console.log($scope.newReader);
-    reader = Reader.save($scope.newReader);
-    $scope.readers.push(reader);
-    $scope.newReader = '';
+  ctrl.readers = Reader.query();
+  ctrl.filteredList = $filter('filter')(ctrl.readers, ctrl.search);
+  ctrl.addReader = function () {
+    console.log(ctrl.newReader);
+    reader = Reader.save(ctrl.newReader);
+    ctrl.readers.push(reader);
+    ctrl.newReader = '';
   };
 
-  $scope.updateReader = function (reader) {
-    $scope.refresh();
+  ctrl.updateReader = function (reader) {
+    ctrl.refresh();
     Reader.update(reader);
   };
 
-  $scope.deleteReader = function (reader) {
+  ctrl.deleteReader = function (reader) {
     Reader.delete({ id: reader.id }, function() {
     console.log(reader.id + ' Deleted from server');
-    $scope.refresh();
+    ctrl.refresh();
   });
   };
 
-  $scope.refresh = function(){
+  ctrl.refresh = function(){
     $http.get('/readers')
           .success(function(data){
-               $scope.readers = data;
+               ctrl.readers = data;
           });
   };
+
 
 }
 
