@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require angular
+//= require angular-resource
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require_tree ./templates
-//= require angular-resource
 //= require summer-reading-app
 //= require_tree .

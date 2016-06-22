@@ -17,16 +17,20 @@ angular
             controller: 'ReadersController'
         })
         .state('readers.profile', {
-            url: '/:id/profile',
+            url: '/:id',
             templateUrl: 'readers/profile.html',
-            controller: 'ReadersController'
+            controller: 'ReadersProfileController',
+            controllerAs: 'reader',
+            resolve: {
+              profile: function (ReaderService, $stateParams) {
+                return ReaderService.getProfile($stateParams.id);
+              }
+            }
         })
         .state('logs', {
-            url: 'readers/logs',
+            url: '/logs',
             templateUrl: 'logs/logs_index.html',
             controller: 'LogsController'
         });
         $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(true);
-
 });
