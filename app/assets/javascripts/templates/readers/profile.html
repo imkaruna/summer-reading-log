@@ -1,7 +1,12 @@
-
   <h3>Edit Reader Profile</h3>
   <strong>Name: </strong>
   {{reader.data.name}}
+  <p>
+      {{reader.message}}
+    <ul>
+      <li ng-repeat = "book in reader.allbooks">{{book.name}} <button ng-click = "reader.assignBook(book)">Assign Book</button></li>
+    </ul>
+  </p>
   <div>
   <h4>Books Read</h4>
     <label>Filter by Genre </label> <input ng-model = "reader.search" ng-change="reader.refilter()">
@@ -18,7 +23,7 @@
           Genre
         </th>
       </tr>
-      <tr ng-repeat = "book in reader.data.books  | filter:reader.search:filteredList">
+      <tr ng-repeat = "book in reader.data.books  | filter:{genre:reader.search} ">
         <td>
           {{book.name}}
         </td>

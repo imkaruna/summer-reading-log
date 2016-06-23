@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-4">
       <label>Search:</label> <input ng-model="ctrl.search" />
-      <ul ng-repeat = "reader in ctrl.readers | filter: ctrl.search">
+      <ul ng-repeat = "reader in ctrl.readers | filter:ctrl.search">
         <li>
           <a  ng-hide = "edit" ui-sref="readers.profile({ id: reader.id })"><span> {{reader.name}}</span></a>
           <button ng-hide="edit" name="button" ng-click = "edit=true">Edit</button>

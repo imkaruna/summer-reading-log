@@ -9,7 +9,7 @@ class ReadersController < ApplicationController
   def show
     @reader = Reader.find(params[:id])
     respond_to do |format|
-      format.json {render :json => @reader.to_json(:only => [:name], :include => [{:books => {:only => [:name, :author, :genre]}}])}
+      format.json {render :json => @reader.to_json(:only => [:id, :name], :include => [:books])}
     end
   end
 
@@ -19,7 +19,16 @@ class ReadersController < ApplicationController
 
   def update
     @reader = Reader.find(params[:id])
-    respond_with @reader.update(reader_params)
+    params[:books].each do |book|
+      book_to_add = Book.find_or_create_by(id: book["id"])
+      unless @reader.books.include?(book_to_add)
+        @reader.books << book_to_add
+      end
+    end
+    @reader.update!(reader_params)
+    respond_to do |format|
+      format.json {render :json => @reader.to_json(:only => [:id, :name], :include => [:books])}
+    end
   end
 
   def destroy
@@ -30,7 +39,7 @@ class ReadersController < ApplicationController
 
   private
   def reader_params
-    params.require(:reader).permit(:name)
+    params.require(:reader).permit(:id, :name, :books)
   end
 
   protected
