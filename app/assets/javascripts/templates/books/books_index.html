@@ -7,12 +7,41 @@
       <p>
         Author Name: <input type="text" ng-model="newBook.author" value="">
       </p>
+      <p>
+        <label> Genre:
+          <select name="repeatSelect" id="repeatSelect" ng-model="newBook.genre">
+            <option  ng-repeat="option in data.genreOptions" value="{{option.name}}">{{option.name}}</option>
+          </select>
+        </label>
+      </p>
       <input type="submit" name="submit" value="Add Book">
     </form>
     <h3>{{title}}</h3>
-    <ul ng-repeat ="book in books">
-      <li> <a ui-sref = "books.detail({id: book.id})">{{book.name}}  by {{book.author}}</a> </li>
-    </ul>
+    <table>
+      <tr>
+        <th>
+          Book Name
+        </th>
+        <th>
+          Author
+        </th>
+        <th>
+          Genre
+        </th>
+      </tr>
+      <tr ng-repeat ="book in books">
+        <td>
+          <a ui-sref = "books.detail({id: book.id})">{{book.name}}</a>
+        </td>
+        <td>
+          {{book.author}}
+        </td>
+        <td>
+          {{book.genre}}
+        </td>
+      </tr>
+    </table>
+
     <div ui-view>
 
     </div>
