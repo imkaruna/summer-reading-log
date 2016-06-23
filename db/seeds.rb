@@ -1,9 +1,10 @@
+Reader.destroy_all
 r1 = Reader.create!(name: 'Singh')
 r2 = Reader.create!(name: 'Adam')
 r3 = Reader.create!(name: 'Pope')
 r4 = Reader.create!(name: 'Julia')
 r5 = Reader.create!(name: 'Sharon')
-
+Book.destroy_all
 b1 = Book.create!(name: "The Story of My Life", author: "Michael Adams", genre: "Biography")
 b2 = Book.create!(name: "The Funny Snail", author: "Johnny Apple Sead", genre: "Humor")
 b3 = Book.create!(name: "King of Kahlua", author: "Fifi Mono", genre: "Mystery")
