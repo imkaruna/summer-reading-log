@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     respond_to do |format|
-      format.json {render :json => @book.to_json(:only => [:name, :author])}
+      format.json {render :json => @book.to_json(:only => [:name, :author, :genre])}
     end
   end
 
