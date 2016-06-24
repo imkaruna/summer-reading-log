@@ -1,11 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
-body h1, h2 {
+body h1, h2, h3 {
   font-family: 'Poiret One', sans-serif;
   letter-spacing: 2px;
   text-shadow: 1px 1px 4px #555;
 }
+h2, h3 {
+  text-shadow: none;
+}
 
+.reader-name {
+  color: orange;
+  font-family: cursive;
+}
 body {
   font-family:sans-serif;
 }
@@ -35,4 +42,19 @@ ul#menu li a:hover {
 
 ul#menu li .active {
     background-color: orange;
+}
+
+.book-list li {
+  line-height: 30px;
+  list-style: none;
+  margin-left: 1px;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 2px;
+}
+
+li.small-well{
+  background-color: #efefef;
+  padding:8px;
+  border-radius: 4px;
+  list-style: none;
 }

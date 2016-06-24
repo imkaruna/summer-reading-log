@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jQuery
+//= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require angular
 //= require angular-resource
 //= require angular-ui-router
