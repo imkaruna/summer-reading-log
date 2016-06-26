@@ -5,7 +5,7 @@
   <div class="col-md-6">
     <h4 class="well">All Books</h4>
     <p>
-      <span>{{reader.message}}</span>
+      <span class="help-block">{{reader.message}}</span>
       <label>Filter by Genre </label> <input ng-model = "reader.search" ng-change="reader.refilter()">
       <ul class="book-list">
         <li ng-repeat = "book in reader.allbooks | filter:{genre:reader.search} ">{{book.name}} - <strong>by</strong> {{book.author}} [ <i>{{book.genre}}</i> ]<br><button class="btn btn-sm btn-warning"  ng-hide = "reader.hasBook(book.id)" ng-click = "reader.assignBook(book)">Assign Book</button></li>
