@@ -1,9 +1,12 @@
 function ReadersProfileController($scope, profile, $filter, $stateParams, $resource, $http) {
   var reader = this;
+  reader.userBooks = [];
   reader.unread = true;
   Reader = $resource("/readers/:id", {id: "@id"}, {update: {method: "PUT"}});
   Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
+
   reader.data = profile.data;
+
   reader.search = '';
 
 	reader.refilter = function () {
@@ -13,16 +16,7 @@ function ReadersProfileController($scope, profile, $filter, $stateParams, $resou
   reader.allbooks = Book.query();
 
   reader.hasBook = function (bookId) {
-    Reader.get({id:this.data.id}).$promise.then(function (user) {
-      if (!user.books.map(function (book) {
-        return book.id}).includes(bookId)){
-          return true;
-      }
-      else {
-        return false;
-      }
-
-    });
+    return reader.userBooks.includes(bookId);
   }
 
   reader.assignBook = function (book) {
@@ -45,10 +39,15 @@ function ReadersProfileController($scope, profile, $filter, $stateParams, $resou
 
   reader.refresh = function(){
     var user = this.data.id;
-    Reader.get({id:this.data.id}).$promise.then(function (res) {
-      reader.data.books = res.books;
+    Reader.get({id:this.data.id}).$promise.then(function (user) {
+      reader.data.books = user.books;
+      reader.userBooks = user.books.map(function (book) {
+      return book.id});
     });
   }
+
+  reader.refresh();
+
   };
 
 angular
