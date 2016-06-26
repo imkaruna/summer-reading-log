@@ -11,8 +11,12 @@ function ReadersController($resource, $http, $stateParams, $filter) {
   };
 
   ctrl.updateReader = function (reader) {
-    Reader.update(reader);
-      ctrl.refresh();
+    console.log(reader);
+    Reader.update(reader).$promise.then(function(){
+        ctrl.refresh();
+    });
+
+
   };
 
   ctrl.deleteReader = function (reader) {
