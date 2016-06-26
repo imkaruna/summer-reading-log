@@ -59,6 +59,13 @@ li.small-well{
   list-style: none;
 }
 
+
+span.help-block {
+  text-transform: uppercase;
+  color:#ff0000;
+  font-size: 120%;
+}
+
 .inset-text {
     /* Shadows are visible under slightly transparent text color */
     color: rgba(10,60,150, 0.8);
