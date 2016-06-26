@@ -7,11 +7,11 @@ A simple Rails+Angular App to log kids' summer reading.
 
 This is a Web App and the best way to see the App in action would be to clone the application.
 
-`bundle install`
-`rake db:migrate`
-`rake db:seed`
-`rails s` to start the Rails server
-Now on your browser go to http://localhost:3000/
+* `bundle install`
+* `rake db:migrate`
+* `rake db:seed`
+* `rails s` to start the Rails server
+* Now on your browser go to http://localhost:3000/
 
 If everything works you should see the application's front page.
 
