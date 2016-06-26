@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :readers
   resources :readers, defaults: { format: 'json' }
   resources :books, defaults: { format: 'json' }
   # namespace :api do
