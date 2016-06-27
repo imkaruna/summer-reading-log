@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   skip_before_action :verify_authenticity_token, if: :json_request?
+  before_filter :authenticate_user!, only: [:create, :update]
   respond_to :json
 
   def index
