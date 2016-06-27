@@ -13,6 +13,7 @@
 //= require jQuery
 //= require bootstrap-sass/assets/javascripts/bootstrap-sprockets
 //= require angular
+//= require angular-devise
 //= require angular-resource
 //= require angular-ui-router
 //= require angular-rails-templates
