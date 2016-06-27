@@ -3,6 +3,11 @@ function ReaderService($http) {
     result = $http.get('/users/'+id);
     return result;
   }
+
+  this.getUsers = function() {
+    result = $http.get('/users');
+    return result;
+  }
 }
 
 angular
