@@ -6,6 +6,10 @@ angular
             url: '/',
             templateUrl: 'main_index.html'
         })
+        .state('logout', {
+            url: '/',
+            templateUrl: 'main_index.html'
+        })
         .state('login', {
           url: '/login',
           templateUrl: 'auth/login.html',
