@@ -2,7 +2,7 @@ function ReadersProfileController($scope, profile, $filter, $stateParams, $resou
   var reader = this;
   reader.userBooks = [];
   reader.unread = true;
-  Reader = $resource("/readers/:id", {id: "@id"}, {update: {method: "PUT"}});
+  Reader = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
   Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
 
   reader.data = profile.data;

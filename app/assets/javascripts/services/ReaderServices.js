@@ -1,6 +1,6 @@
 function ReaderService($http) {
   this.getProfile = function (id) {
-    result = $http.get('/readers/'+id);
+    result = $http.get('/users/'+id);
     return result;
   }
 }

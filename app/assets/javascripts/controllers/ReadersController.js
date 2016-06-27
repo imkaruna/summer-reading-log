@@ -1,7 +1,7 @@
 function ReadersController($resource, $http, $stateParams, $filter) {
   console.log('reader');
   var ctrl = this;
-  Reader = $resource("/readers/:id", {id: "@id"}, {update: {method: "PUT"}});
+  Reader = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
   ctrl.readers = Reader.query();
   ctrl.addReader = function () {
     console.log(ctrl.newReader);
@@ -27,7 +27,7 @@ function ReadersController($resource, $http, $stateParams, $filter) {
   };
 
   ctrl.refresh = function(){
-    $http.get('/readers')
+    $http.get('/users')
           .success(function(data){
                ctrl.readers = data;
           });
