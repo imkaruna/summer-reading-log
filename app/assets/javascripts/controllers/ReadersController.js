@@ -1,7 +1,20 @@
-function ReadersController($resource, $http, $stateParams, $filter) {
+function ReadersController($resource, $http, $stateParams, $filter, Auth, ReaderService) {
   console.log('reader');
   var ctrl = this;
-  // Reader = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
+  ctrl.readers = [];
+  ctrl.data = {
+    repeatSelect: null,
+    roleOptions: [
+      {name: 'Teacher'},
+      {name: 'Student'}
+    ]
+   };
+  // ctrl.data = user.data;
+  ReaderService.getUsers().then(function (users) {
+       ctrl.readers = users.data;
+  });
+
+  Reader = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
   // ctrl.readers = Reader.query();
   // ctrl.addReader = function () {
   //   console.log(ctrl.newReader);
@@ -10,28 +23,28 @@ function ReadersController($resource, $http, $stateParams, $filter) {
   //   ctrl.newReader = '';
   // };
   //
-  // ctrl.updateReader = function (reader) {
-  //   console.log(reader);
-  //   Reader.update(reader).$promise.then(function(){
-  //       ctrl.refresh();
-  //   });
+  ctrl.updateReader = function (reader) {
+    console.log(reader);
+    Reader.update(reader).$promise.then(function(){
+      ReaderService.getUsers().then(function (users) {
+           ctrl.readers = users.data;
+      });
+    });
+   };
   //
+  ctrl.deleteReader = function (reader) {
+    Reader.delete({ id: reader.id }, function() {
+    console.log('Reader '+ reader.id + ' Deleted from server');
+    ctrl.refresh();
+  });
+  };
   //
-  // };
-  //
-  // ctrl.deleteReader = function (reader) {
-  //   Reader.delete({ id: reader.id }, function() {
-  //   console.log(reader.id + ' Deleted from server');
-  //   ctrl.refresh();
-  // });
-  // };
-  //
-  // ctrl.refresh = function(){
-  //   $http.get('/users')
-  //         .success(function(data){
-  //              ctrl.readers = data;
-  //         });
-  // };
+  ctrl.refresh = function(){
+    $http.get('/users')
+          .success(function(data){
+               ctrl.readers = data;
+          });
+  };
   //
 
 }
