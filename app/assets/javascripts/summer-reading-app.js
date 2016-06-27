@@ -1,6 +1,6 @@
 angular
   .module('summer-reading-app', ['templates','ui.router', 'ngResource', 'Devise'])
-  .config(function ($stateProvider, $locationProvider, $urlRouterProvider ) {
+  .config(function ($stateProvider, $locationProvider, $urlRouterProvider, AuthProvider ) {
     $stateProvider
         .state('/', {
             url: '/',
@@ -53,5 +53,6 @@ angular
             templateUrl: 'logs/logs_index.html',
             controller: 'LogsController'
         });
+
         $urlRouterProvider.otherwise('/');
 });

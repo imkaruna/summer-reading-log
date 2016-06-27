@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     respond_to do |format|
-      format.json {render :json => @user.to_json(:only => [:id, :name], :include => [:books])}
+      format.json {render :json => @user.to_json(:only => [:id, :name, :role], :include => [:books])}
     end
   end
 
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:id, :name, :books)
+    params.require(:user).permit(:id, :name, :role, :books)
   end
 
   protected

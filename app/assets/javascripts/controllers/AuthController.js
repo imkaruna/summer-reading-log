@@ -9,13 +9,17 @@ function AuthController($scope, $state, Auth) {
 
   $scope.login = function() {
       Auth.login($scope.user).then(function(user){
-        $state.go('/');
+        alert('ID:' + user.id);
+        $scope.user = user;
+        $state.go('readers');
       });
     };
 
 
     $scope.register = function() {
       Auth.register($scope.user).then(function(){
+
+        alert('ID:' + user.id);
         $state.go('/');
       });
     };
