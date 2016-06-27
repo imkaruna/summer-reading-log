@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626192115) do
+ActiveRecord::Schema.define(version: 20160627003138) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -21,15 +21,15 @@ ActiveRecord::Schema.define(version: 20160626192115) do
     t.string   "genre"
   end
 
-  create_table "reader_books", force: :cascade do |t|
-    t.integer  "reader_id"
+  create_table "user_books", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "book_id"
     t.datetime "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "readers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160626192115) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "readers", ["email"], name: "index_readers_on_email", unique: true
-  add_index "readers", ["reset_password_token"], name: "index_readers_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
