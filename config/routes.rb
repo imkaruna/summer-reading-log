@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :readers
-  resources :readers, defaults: { format: 'json' }
+  devise_for :users, defaults: { format: 'json' }
+  # resources :users, defaults: { format: 'json' }
   resources :books, defaults: { format: 'json' }
   # namespace :api do
   #     resources :books, except: :edit
