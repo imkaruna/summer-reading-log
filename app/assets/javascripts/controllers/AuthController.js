@@ -1,9 +1,18 @@
 function AuthController($scope, $state, Auth) {
+  $scope.data = {
+    repeatSelect: null,
+    roleOptions: [
+      {name: 'Teacher'},
+      {name: 'Student'}
+    ]
+   };
+
   $scope.login = function() {
       Auth.login($scope.user).then(function(user){
         $state.go('/');
       });
     };
+
 
     $scope.register = function() {
       Auth.register($scope.user).then(function(){

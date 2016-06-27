@@ -12,5 +12,10 @@
   <div class="input-group">
     <input type="password" class="form-control" placeholder="Password" ng-model="user.password"><br><br>
   </div>
+  <div class="input-group">
+    <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="user.role">
+      <option  ng-repeat="option in data.roleOptions" value="{{option.name}}">{{option.name}}</option>
+    </select>
+  </div>
   <input type="submit" class="btn btn-warning" value="Register">
 </form>
