@@ -1,15 +1,25 @@
 angular
-  .module('summer-reading-app', ['templates','ui.router', 'ngResource'])
+  .module('summer-reading-app', ['templates','ui.router', 'ngResource', 'Devise'])
   .config(function ($stateProvider, $locationProvider, $urlRouterProvider ) {
     $stateProvider
         .state('/', {
             url: '/',
             templateUrl: 'main_index.html'
         })
+        .state('login', {
+          url: '/login',
+          templateUrl: 'auth/login.html',
+          controller: 'AuthController'
+        })
+        .state('register', {
+          url: '/register',
+          templateUrl: 'auth/register.html',
+          controller: 'AuthController'
+        })
         .state('books', {
-            url: '/books',
-            templateUrl: 'books/books_index.html',
-            controller: 'BooksController'
+          url: '/books',
+          templateUrl: 'books/books_index.html',
+          controller: 'BooksController'
         })
         .state('books.detail', {
             url: '/:id',

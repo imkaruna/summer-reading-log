@@ -12,11 +12,9 @@
   <div class="container">
     <h1>Reading Log</h1>
     <h5><i>Log/Assign books for your readers</i></h5>
-      <ul id="menu" >
-        <li><a href="#" ui-sref="/" ui-sref-active="active">Home</a></li>
-        <li><a href="#" ui-sref="readers" ui-sref-active="active">Readers</a></li>
-        <li><a href="#" ui-sref="books" ui-sref-active="active">Books</a></li>
-      </ul>
+    <div class="col-md-6 col-md-offset-3">
+      <div ng-include="'nav/_nav.html'"></div>
+    </div>
       <p>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
