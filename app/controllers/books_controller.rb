@@ -1,10 +1,15 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :remove, :destroy]
   skip_before_action :verify_authenticity_token, if: :json_request?
-  before_filter :authenticate_user!, only: [:create, :update]
+  # before_filter :authenticate_user!, only: [:create, :update]
   respond_to :json
 
   def index
-    respond_with Book.all
+    if current_user.role == 'Teacher'
+      respond_with Book.all
+    else
+      respond_with current_user.books
+    end
   end
 
   def show

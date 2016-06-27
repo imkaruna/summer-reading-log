@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :remove, :destroy]
   skip_before_action :verify_authenticity_token, if: :json_request?
   respond_to :json
 
