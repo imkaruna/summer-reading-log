@@ -9,9 +9,14 @@ function AuthController($scope, $state, Auth) {
 
   $scope.login = function() {
       Auth.login($scope.user).then(function(user){
-        alert('ID:' + user.id);
         $scope.user = user;
-        $state.go('readers');
+        if (user.role === 'Teacher') {
+            $state.go('readers');
+        }
+        else {
+            $state.go('books');
+        }
+
       });
     };
 

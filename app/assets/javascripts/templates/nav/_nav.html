@@ -1,9 +1,9 @@
 <div ng-controller="NavsController">
   <ul id="menu">
-      <li ng-show ="signedIn()" class="username">Welcome {{user.name}}</li>
+      <li ng-show ="signedIn()" class="username"><strong>Welcome {{user.name}}</strong></li>
       <li><a href="#" ui-sref="/" ui-sref-active="active">Home</a></li>
-      <li><a href="#" ui-sref="books" ui-sref-active="active">Books</a></li>
-      <li ng-show ="signedIn()"><a href="#" ui-sref="readers" ui-sref-active="active">Readers</a></li>
+      <li ng-show="signedIn()"><a href="#" ui-sref="books" ui-sref-active="active">Books</a></li>
+      <li ng-show ="signedIn() && user.role == 'Teacher'"><a href="#" ui-sref="readers" ui-sref-active="active">Readers</a></li>
       <li ng-hide="signedIn()"><a href="#" ui-sref = "login" ui-sref-active="active">Log In</a></li>
       <li ng-hide="signedIn()"><a href="#" ui-sref="register" ui-sref-active="active">Register</a></li>
       <li ng-show="signedIn()"><a href="#" ui-sref="logout" ng-click="logout()">Log Out</a></li>

@@ -20,7 +20,6 @@ function ReadersController($resource, $http, $stateParams, $filter, Auth, Reader
              // unauthenticated error
              console.log('not authenticated');
          });
-  // ctrl.data = user.data;
   ReaderService.getUsers().then(function (users) {
        ctrl.readers = users.data;
   });
