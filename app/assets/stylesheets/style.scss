@@ -66,6 +66,18 @@ span.help-block {
   font-size: 120%;
 }
 
+span.welcome {
+  font-size: 120%;
+  text-shadow: 1px 3px 3px #ddd;
+  margin: 5px;
+}
+span.username {
+  font-size: 150%;
+  font-family: 'Poiret One', sans-serif;
+  font-weight: bolder;
+  color:orange;
+  padding: 5px;
+}
 .inset-text {
     /* Shadows are visible under slightly transparent text color */
     color: rgba(10,60,150, 0.8);

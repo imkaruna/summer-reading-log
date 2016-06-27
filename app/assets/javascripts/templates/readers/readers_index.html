@@ -1,6 +1,11 @@
 <div class="row">
   <div ng-controller="ReadersController as ctrl">
-    <div class="well">
+
+    <p ng-show = "ctrl.current_user">
+      <span class="welcome">WELCOME</span><span class="username">{{ctrl.current_user.name}}</span>
+      <i>logged in as : {{ctrl.current_user.role}}</i>
+    </p>
+    <div class="well" ng-show = "ctrl.current_user.role == 'Teacher'">
         <form name="readerForm" ng-submit = "ctrl.addReader()">
           <div class="form-group">
             <label for="uName">Reader Name</label>

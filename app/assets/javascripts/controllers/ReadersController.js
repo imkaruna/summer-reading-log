@@ -1,6 +1,7 @@
 function ReadersController($resource, $http, $stateParams, $filter, Auth, ReaderService) {
   console.log('reader');
   var ctrl = this;
+  ctrl.current_user = "";
   ctrl.readers = [];
   ctrl.data = {
     repeatSelect: null,
@@ -9,6 +10,16 @@ function ReadersController($resource, $http, $stateParams, $filter, Auth, Reader
       {name: 'Student'}
     ]
    };
+
+   Auth.currentUser().then(function(user) {
+             // User was logged in, or Devise returned
+             // previously authenticated session.
+             ctrl.current_user = user;
+             console.log(user); // => {id: 1, ect: '...'}
+         }, function(error) {
+             // unauthenticated error
+             console.log('not authenticated');
+         });
   // ctrl.data = user.data;
   ReaderService.getUsers().then(function (users) {
        ctrl.readers = users.data;

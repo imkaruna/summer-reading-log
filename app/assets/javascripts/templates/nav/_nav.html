@@ -5,7 +5,6 @@
       <li ng-show ="signedIn()"><a href="#" ui-sref="readers" ui-sref-active="active">Readers</a></li>
       <li ng-hide="signedIn()"><a href="#" ui-sref = "login" ui-sref-active="active">Log In</a></li>
       <li ng-hide="signedIn()"><a href="#" ui-sref="register" ui-sref-active="active">Register</a></li>
-      <li ng-show="signedIn()"><a href="#" ui-sref-active="active">Welcome {{ user.name }}</a></li>
       <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
 
   </ul>
