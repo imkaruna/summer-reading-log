@@ -48,7 +48,6 @@ ul#menu li .active {
   line-height: 30px;
   list-style: none;
   margin-left: 1px;
-  border-bottom: 1px solid #aaa;
   padding-bottom: 2px;
 }
 
@@ -77,4 +76,14 @@ li.username {
   font-weight: bolder;
   color:orange;
   padding: 5px;
+}
+
+.books-display {
+  border: 1px solid #555;
+  border-radius: 5px;
+  margin:4px;
+  padding: 5px;
+}
+.books-display li {
+  list-style: none;
 }

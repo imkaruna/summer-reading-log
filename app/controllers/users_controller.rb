@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :remove, :destroy]
   skip_before_action :verify_authenticity_token, if: :json_request?
+  skip_before_filter :require_no_authentication, :only => [:new, :create]
   respond_to :json
 
   def index
@@ -35,11 +36,14 @@ class UsersController < ApplicationController
   end
 
   def update_status
-    book = UserBook.find_by(book_id: params[:id], user_id: params[:user_id])
-    book.update_attributes({:status => params[:status]})
-    book.save
-    respond_to do |format|
-      format.json {render :json => book.to_json}
+    # binding.pry
+    if current_user.role == 'Student'
+      book = UserBook.find_by(book_id: params[:book_id], user_id: params[:user_id])
+      book.update_attributes({:status => params[:status]})
+      # book.save
+      respond_to do |format|
+        format.json {render :json => book.to_json}
+      end
     end
   end
 
@@ -54,8 +58,21 @@ class UsersController < ApplicationController
     params.require(:user).permit(:id, :name, :role, :books)
   end
 
+  def is_teacher?
+    current_user.role == 'Teacher'
+  end
+
   protected
   def json_request?
     request.format.json?
+  end
+
+
+  def require_no_authentication
+      if current_user.is_teacher?
+          return true
+      else
+          return super
+      end
   end
 end

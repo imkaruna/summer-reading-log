@@ -2,18 +2,7 @@ function BooksController($scope, $resource, $http, Auth, ReaderService) {
   var ctrl = this;
   console.log('books');
   Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
-  $scope.bookStatus = {
-    repeatSelect: null,
-    statusOptions: [
-      {name: 'unread'},
-      {name: 'read'}
-    ]
-   };
 
- $scope.updateStatus = function (id, book) {
-   alert(book.id);
-  ReaderService.updateUserBookStatus(id, book);
- }
 
   Auth.currentUser().then(function(user) {
             $scope.current_user = user;
