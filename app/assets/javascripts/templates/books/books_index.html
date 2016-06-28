@@ -33,16 +33,24 @@
         <th>
           Genre
         </th>
+        <th>
+          Status
+        </th>
       </tr>
       <tr ng-repeat ="book in books">
         <td>
-          <a ui-sref = "books.detail({id: book.id})">{{book.name}}</a>
+          <a ui-sref = "books.detail({id: book.book_id})">{{book.name}}</a>
         </td>
         <td>
           {{book.author}}
         </td>
         <td>
           {{book.genre}}
+        </td>
+        <td>
+          <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="book.status" ng-change="updateStatus(current_user.id, book)">
+            <option  ng-repeat="option in bookStatus.statusOptions" value="{{option.name}}">{{option.name}}</option>
+          </select>
         </td>
       </tr>
     </table>

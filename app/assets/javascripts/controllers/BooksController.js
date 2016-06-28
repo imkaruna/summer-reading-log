@@ -1,18 +1,38 @@
-function BooksController($scope, $resource, $http, Auth) {
+function BooksController($scope, $resource, $http, Auth, ReaderService) {
   var ctrl = this;
   console.log('books');
+  Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
+  $scope.bookStatus = {
+    repeatSelect: null,
+    statusOptions: [
+      {name: 'unread'},
+      {name: 'read'}
+    ]
+   };
+
+ $scope.updateStatus = function (id, book) {
+   alert(book.id);
+  ReaderService.updateUserBookStatus(id, book);
+ }
 
   Auth.currentUser().then(function(user) {
+            $scope.current_user = user;
             // User was logged in, or Devise returned
             // previously authenticated session.
-            return ctrl.current_user = user;
+            $scope.addBook = function () {
+              reader = Book.save($scope.newBook);
+              console.log($scope.newBook);
+              ctrl.newBook = '';
+              $scope.refresh();
+              $scope.newBook = '';
+            }
             console.log(user); // => {id: 1, ect: '...'}
         }, function(error) {
             // unauthenticated error
             console.log('not authenticated');
         });
 
-  Book = $resource("/books/:id", {id: "@id"}, {update: {method: "PUT"}});
+
   $scope.data = {
     repeatSelect: null,
     genreOptions: [
@@ -31,19 +51,11 @@ function BooksController($scope, $resource, $http, Auth) {
 
   $scope.title = "All Books";
 
-  $scope.addBook = function () {
-    reader = Book.save($scope.newBook);
-    console.log($scope.newBook);
-    ctrl.newBook = '';
-    $scope.refresh();
-    $scope.newBook = '';
-  }
-
   $scope.refresh = function(){
     $http.get('/books')
           .success(function(data){
             console.log(data);
-            ctrl.books = data;
+            $scope.books = data;
           });
   };
 

@@ -34,6 +34,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_status
+    book = UserBook.find_by(book_id: params[:id], user_id: params[:user_id])
+    book.update_attributes({:status => params[:status]})
+    book.save
+    respond_to do |format|
+      format.json {render :json => book.to_json}
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

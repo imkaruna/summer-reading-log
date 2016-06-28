@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :user_books
   has_many :books, through: :user_books
+  attr_accessor :status
 
   def books_read
     self.books
