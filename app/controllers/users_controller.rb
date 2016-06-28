@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :remove, :destroy]
   skip_before_action :verify_authenticity_token, if: :json_request?
-  skip_before_filter :require_no_authentication, :only => [:new, :create]
   respond_to :json
 
   def index
@@ -67,12 +66,4 @@ class UsersController < ApplicationController
     request.format.json?
   end
 
-
-  def require_no_authentication
-      if current_user.is_teacher?
-          return true
-      else
-          return super
-      end
-  end
 end

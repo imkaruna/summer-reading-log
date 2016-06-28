@@ -1,19 +1,30 @@
 <div class="row">
   <div ng-controller="ReadersController as ctrl">
-
     <p ng-show = "ctrl.current_user">
       <span class="welcome">WELCOME</span><span class="username">{{ctrl.current_user.name}}</span>
       <i>logged in as : {{ctrl.current_user.role}}</i>
     </p>
     <div class="well" ng-show = "ctrl.current_user.role == 'Teacher'">
-        <form name="readerForm" ng-submit = "ctrl.addReader()">
-          <div class="form-group">
-            <label for="uName">Reader Name</label>
-
-            <input id="uName" type="text" class="form-control" ng-model="ctrl.newReader.name" name="uName" ng-minlength="3" required placeholder="Reader Name"><br>
-            <input type="submit" class="btn btn-sm btn-primary"name="submit" value="Add Reader" ng-disabled="readerForm.$invalid">
-          </div>
-        </form>
+      <form ng-submit="ctrl.addReader()">
+        <div class="input-group">
+          <input type="email" class="form-control" placeholder="Email" ng-model="newUser.email"><br><br>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Name" ng-model="newUser.name"><br><br>
+        </div>
+        <div class="input-group">
+          <input type="password" class="form-control" placeholder="Password" ng-model="newUser.password"><br><br>
+        </div>
+        <div class="input-group">
+          <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="newUser.password_confirmation"><br><br>
+        </div>
+        <div class="input-group">
+          <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="newUser.role">
+            <option  ng-repeat="option in ctrl.data.roleOptions" value="{{option.name}}">{{option.name}}</option>
+          </select>
+        </div>
+        <input type="submit" class="btn btn-warning" value="Register">
+      </form>
       <p ng-show="readerForm.uName.$error.minlength" class="help-block">Username is too short.</p>
       <div class="form-group">
         <label>Search for reader:</label> <input ng-model="ctrl.search" />

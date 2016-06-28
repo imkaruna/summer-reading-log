@@ -1,6 +1,7 @@
-function ReadersController($resource, $http, $stateParams, $filter, Auth, ReaderService) {
+function ReadersController($scope,$resource, $http, $stateParams, $filter, Auth, ReaderService) {
   console.log('reader');
   var ctrl = this;
+
   ctrl.current_user = "";
   ctrl.readers = [];
   ctrl.data = {
@@ -20,22 +21,28 @@ function ReadersController($resource, $http, $stateParams, $filter, Auth, Reader
              // unauthenticated error
              console.log('not authenticated');
          });
+
   ReaderService.getUsers().then(function (users) {
        ctrl.readers = users.data;
   });
 
-  Reader = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
+  User = $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}});
   // ctrl.readers = Reader.query();
-  // ctrl.addReader = function () {
-  //   console.log(ctrl.newReader);
-  //   reader = Reader.save(ctrl.newReader);
-  //   ctrl.readers.push(reader);
-  //   ctrl.newReader = '';
-  // };
+  ctrl.addReader = function () {
+    console.log($scope.newUser);
+    alert('in addreader');
+    Auth.register($scope.newUser).then(function(data){
+      alert('ID:' + data.id);
+      console.log(data);
+      ctrl.readers.push(data);
+      $scope.newUser = '';
+    //   $state.go('/');
+    });
+  };
   //
   ctrl.updateReader = function (reader) {
     console.log(reader);
-    Reader.update(reader).$promise.then(function(){
+    User.update(reader).$promise.then(function(){
       ReaderService.getUsers().then(function (users) {
            ctrl.readers = users.data;
       });
@@ -43,7 +50,7 @@ function ReadersController($resource, $http, $stateParams, $filter, Auth, Reader
    };
   //
   ctrl.deleteReader = function (reader) {
-    Reader.delete({ id: reader.id }, function() {
+    User.delete({ id: reader.id }, function() {
     console.log('Reader '+ reader.id + ' Deleted from server');
     ctrl.refresh();
   });
