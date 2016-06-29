@@ -9,12 +9,12 @@ function NavsController($state, $scope, Auth, $location) {
                $scope.current_user = user;
               });
             $scope.$on('devise:new-registration', function (e, user){
-            $scope.user = user;
+            $scope.current_user = user;
               });
             $scope.$on('devise:logout', function (e, user){
                $scope.current_user = {};
               });
-            return $scope.current_user;
+            // return $scope.current_user;
            // => {id: 1, ect: '...'}
         }, function(error) {
             // unauthenticated error
