@@ -22,9 +22,8 @@ function AuthController($scope, $state, Auth) {
 
 
     $scope.register = function() {
-      Auth.register($scope.user).then(function(){
-
-        alert('ID:' + user.id);
+      Auth.register($scope.user).then(function(user){
+        $scope.current_user = user;
         $state.go('/');
       });
     };
